@@ -1,0 +1,96 @@
+version: "3.8"
+
+# CapyTech Data Engineering Lab
+# Fase 0-1: JupyterLab + PostgreSQL + pgAdmin
+# Uso: docker-compose up -d
+
+services:
+
+  # ============================================
+  # PostgreSQL — Base de datos para practicar SQL
+  # ============================================
+  postgres:
+    image: postgres:16-alpine
+    container_name: capytech-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-capytech}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-capytech123}
+      POSTGRES_DB: ${POSTGRES_DB:-capytech_db}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./docker/postgres/init.sql:/docker-entrypoint-initdb.d/init.sql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-capytech}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # ============================================
+  # pgAdmin — UI para SQL (más visual que terminal)
+  # ============================================
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    container_name: capytech-pgadmin
+    restart: unless-stopped
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_EMAIL:-admin@capytech.dev}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_PASSWORD:-capytech}
+      PGADMIN_CONFIG_SERVER_MODE: "False"
+    ports:
+      - "5050:80"
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  # ============================================
+  # JupyterLab — Notebooks para Python y SQL
+  # ============================================
+  jupyter:
+    image: jupyter/scipy-notebook:latest
+    container_name: capytech-jupyter
+    restart: unless-stopped
+    environment:
+      JUPYTER_TOKEN: ${JUPYTER_TOKEN:-capytech}
+      JUPYTER_ENABLE_LAB: "yes"
+      # Variables para conectar a PostgreSQL desde notebooks
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_USER: ${POSTGRES_USER:-capytech}
+      DB_PASSWORD: ${POSTGRES_PASSWORD:-capytech123}
+      DB_NAME: ${POSTGRES_DB:-capytech_db}
+    ports:
+      - "8888:8888"
+    volumes:
+      - ./01-sql:/home/jovyan/01-sql
+      - ./02-python:/home/jovyan/02-python
+      - ./03-spark:/home/jovyan/03-spark
+      - ./04-etl-elt:/home/jovyan/04-etl-elt
+      - ./05-modelado:/home/jovyan/05-modelado
+      - ./proyecto-final:/home/jovyan/proyecto-final
+    depends_on:
+      postgres:
+        condition: service_healthy
+    command: >
+      bash -c "
+        pip install --quiet sqlalchemy psycopg2-binary ipython-sql &&
+        start-notebook.sh --NotebookApp.token='${JUPYTER_TOKEN:-capytech}'
+      "
+
+volumes:
+  postgres_data:
+  pgadmin_data:
+
+# ============================================
+# NOTAS PARA FASES FUTURAS:
+#
+# Fase 2 (Spark): se agregará spark-master + spark-worker
+# Fase 3 (Modelado): se agregarán schemas y datasets precargados
+# Fase 4 (Airflow): se agregará airflow-webserver + airflow-scheduler + minio
+#
+# Cada fase se agrega sin romper lo anterior.
+# ============================================

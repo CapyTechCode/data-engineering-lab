@@ -1,0 +1,33 @@
+# Entorno
+.env
+.venv/
+venv/
+__pycache__/
+*.pyc
+
+# Docker
+postgres_data/
+pgadmin_data/
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/settings.json
+.idea/
+
+# Obsidian — workspace es local de cada usuario
+obsidian-vault/.obsidian/workspace.json
+obsidian-vault/.obsidian/workspace-mobile.json
+obsidian-vault/.obsidian/graph.json
+
+# Datos grandes
+*.csv.gz
+*.parquet
+!01-sql/datasets/*.csv
+!02-python/ejercicios/*.csv
