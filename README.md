@@ -18,7 +18,7 @@ Un laboratorio completo de Data Engineering que corre en tu PC con un solo coman
 - VS Code
 - Git
 
-> ¿No tienes nada instalado? Empieza por el [EP.00 — Setup del laboratorio](https://youtube.com/@capytech)
+> ¿No tienes nada instalado? Empieza por el [EP.00 — Setup del laboratorio](https://www.youtube.com/@CapyTechCode)
 
 ## Inicio rápido
 
