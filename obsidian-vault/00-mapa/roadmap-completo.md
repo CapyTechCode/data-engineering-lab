@@ -2,7 +2,7 @@
 tipo: mapa
 ---
 
-# Roadmap CapyTech — Data Engineering
+# Roadmap CapyTechCode — Data Engineering
 
 ## Fase 0 — Setup del laboratorio
 - [[EP00-setup-lab]] — Tu laboratorio de datos en 20 minutos

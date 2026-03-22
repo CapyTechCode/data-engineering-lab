@@ -1,4 +1,4 @@
-# 🦫 CapyTech — Data Engineering Lab
+# 🦫 CapyTechCode — Data Engineering Lab
 
 Aprende Data Engineering desde cero, paso a paso. Sin asumir que sabes algo.
 
@@ -18,13 +18,13 @@ Un laboratorio completo de Data Engineering que corre en tu PC con un solo coman
 - VS Code
 - Git
 
-> ¿No tienes nada instalado? Empieza por el [EP.00 — Setup del laboratorio](https://www.youtube.com/@CapyTechCode)
+> ¿No tienes nada instalado? Empieza por el [EP.00 — Setup del laboratorio](https://www.youtube.com/@CapyTechCodeCode)
 
 ## Inicio rápido
 
 ```bash
 # 1. Clona el repositorio
-git clone https://github.com/capytech/data-engineering-lab.git
+git clone https://github.com/CapyTechCode/data-engineering-lab.git
 cd data-engineering-lab
 
 # 2. Copia las variables de entorno
@@ -34,10 +34,10 @@ cp .env.example .env
 docker-compose up -d
 
 # 4. Abre JupyterLab en tu navegador
-# http://localhost:8888 (token: capytech)
+# http://localhost:8888 (token: CapyTechCode)
 
 # 5. Abre pgAdmin para SQL
-# http://localhost:5050 (admin@capytech.dev / capytech)
+# http://localhost:5050 (admin@CapyTechCode.dev / CapyTechCode)
 ```
 
 ## Estructura del curso
@@ -89,9 +89,9 @@ La carpeta `anki-decks/` contiene mazos de Anki para memorizar sintaxis:
 
 ## Canal
 
-- YouTube: [@capytech](https://youtube.com/@capytech)
-- GitHub: [capytech](https://github.com/capytech)
+- YouTube: [@CapyTechCode](https://youtube.com/@CapyTechCode)
+- GitHub: [CapyTechCode](https://github.com/CapyTechCode)
 
 ---
 
-Hecho con 🧉 por CapyTech
+Hecho con 🧉 por CapyTechCode

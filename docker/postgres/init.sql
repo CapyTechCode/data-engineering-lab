@@ -1,5 +1,5 @@
 -- ============================================
--- CapyTech — Datos de práctica para SQL
+-- CapyTechCode — Datos de práctica para SQL
 -- Este script se ejecuta automáticamente al crear el contenedor
 -- Dataset: tienda e-commerce ficticia
 -- ============================================
@@ -159,7 +159,7 @@ GROUP BY p.pedido_id, c.nombre, c.ciudad, p.fecha_pedido, p.estado, p.total;
 -- ============================================
 DO $$
 BEGIN
-    RAISE NOTICE '✅ CapyTech DB inicializada correctamente';
+    RAISE NOTICE '✅ CapyTechCode DB inicializada correctamente';
     RAISE NOTICE '   → 5 categorías, 16 productos, 12 clientes, 18 pedidos';
     RAISE NOTICE '   → Schema: tienda.*';
     RAISE NOTICE '   → Listo para practicar SQL!';

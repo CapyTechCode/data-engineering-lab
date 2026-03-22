@@ -1,6 +1,6 @@
 version: "3.8"
 
-# CapyTech Data Engineering Lab
+# CapyTechCode Data Engineering Lab
 # Fase 0-1: JupyterLab + PostgreSQL + pgAdmin
 # Uso: docker-compose up -d
 
@@ -11,19 +11,19 @@ services:
   # ============================================
   postgres:
     image: postgres:16-alpine
-    container_name: capytech-postgres
+    container_name: CapyTechCode-postgres
     restart: unless-stopped
     environment:
-      POSTGRES_USER: ${POSTGRES_USER:-capytech}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-capytech123}
-      POSTGRES_DB: ${POSTGRES_DB:-capytech_db}
+      POSTGRES_USER: ${POSTGRES_USER:-CapyTechCode}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-CapyTechCode123}
+      POSTGRES_DB: ${POSTGRES_DB:-CapyTechCode_db}
     ports:
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
       - ./docker/postgres/init.sql:/docker-entrypoint-initdb.d/init.sql
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-capytech}"]
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-CapyTechCode}"]
       interval: 10s
       timeout: 5s
       retries: 5
@@ -33,11 +33,11 @@ services:
   # ============================================
   pgadmin:
     image: dpage/pgadmin4:latest
-    container_name: capytech-pgadmin
+    container_name: CapyTechCode-pgadmin
     restart: unless-stopped
     environment:
-      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_EMAIL:-admin@capytech.dev}
-      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_PASSWORD:-capytech}
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_EMAIL:-admin@CapyTechCode.dev}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_PASSWORD:-CapyTechCode}
       PGADMIN_CONFIG_SERVER_MODE: "False"
     ports:
       - "5050:80"
@@ -52,17 +52,17 @@ services:
   # ============================================
   jupyter:
     image: jupyter/scipy-notebook:latest
-    container_name: capytech-jupyter
+    container_name: CapyTechCode-jupyter
     restart: unless-stopped
     environment:
-      JUPYTER_TOKEN: ${JUPYTER_TOKEN:-capytech}
+      JUPYTER_TOKEN: ${JUPYTER_TOKEN:-CapyTechCode}
       JUPYTER_ENABLE_LAB: "yes"
       # Variables para conectar a PostgreSQL desde notebooks
       DB_HOST: postgres
       DB_PORT: 5432
-      DB_USER: ${POSTGRES_USER:-capytech}
-      DB_PASSWORD: ${POSTGRES_PASSWORD:-capytech123}
-      DB_NAME: ${POSTGRES_DB:-capytech_db}
+      DB_USER: ${POSTGRES_USER:-CapyTechCode}
+      DB_PASSWORD: ${POSTGRES_PASSWORD:-CapyTechCode123}
+      DB_NAME: ${POSTGRES_DB:-CapyTechCode_db}
     ports:
       - "8888:8888"
     volumes:
@@ -78,7 +78,7 @@ services:
     command: >
       bash -c "
         pip install --quiet sqlalchemy psycopg2-binary ipython-sql &&
-        start-notebook.sh --NotebookApp.token='${JUPYTER_TOKEN:-capytech}'
+        start-notebook.sh --NotebookApp.token='${JUPYTER_TOKEN:-CapyTechCode}'
       "
 
 volumes:

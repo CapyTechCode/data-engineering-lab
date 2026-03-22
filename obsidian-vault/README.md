@@ -1,4 +1,4 @@
-# 🦫 CapyTech — Vault de conocimiento
+# 🦫 CapyTechCode — Vault de conocimiento
 
 Bienvenido al vault de Obsidian del curso de Data Engineering.
 
